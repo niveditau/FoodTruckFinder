@@ -10,5 +10,19 @@ This architecture can be completely converted to a microservice based architectu
 
 Supported queries:
 1. User can query food truck locations by longitude, latitude and radius. Query will return the food truck locations within the given radius from the longitude and latitude.
+
+ ```bash
+ curl http://<hostname>/findtrucks/bylocation?lat=<latitude>&long=<longitude>&radius=<search radius in meters>
+ ```
+
 2. User can query food truck locations by name. Query will return the food truck locations with matching name(applicant).
-3. User can query food truck locations by food item. Query will return the food truck locations by matching food item.
+
+ ```bash
+ curl http://<hostname>/findtrucks/byapplicant?applicant=<name of truck>
+ ```
+
+3. User can query food truck locations by food item. Query will return the food truck locations by matching food item from the menu.
+
+ ```bash
+ curl http://<hostname>/findtrucks/byfooditem?fooditem=<name of the food item>
+ ```
