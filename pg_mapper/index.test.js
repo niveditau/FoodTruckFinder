@@ -3,13 +3,14 @@ var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
 var myIndex = require('./routes/index');
 var databaseQueryHandler = require('./routes/database/dbQueryHandler');
+const { expect } = require('chai');
 const assert = require('assert').strict;
 
 describe("Tests for food truck finder", function() {
     after(function() {
         databaseQueryHandler.endDatabaseConnection();
     });
-    it("should fail for null parameters", function() {
+    it("Should fail for null parameters", function() {
         const expectedError = new Error("parameters long/lat/radius cannot be null.");
 
         databaseQueryHandler.findFoodTrucksByCoordinates(null, null, null).catch(error => {
@@ -24,12 +25,16 @@ describe("Tests for food truck finder", function() {
         var response = await databaseQueryHandler.findFoodTrucksByCoordinates(-1, 3, 1000);
         assert.strictEqual(response.features, null);
     });
-    it("Should return 7 locations for applicant name 'grill'",  async function() {
-        var response =  await databaseQueryHandler.findFoodTrucksByApplicant("grill");
-        assert.strictEqual(response.features.length, 7);
+    it("Should return 4 locations for applicant name 'Bob'",  async function() {
+        var response =  await databaseQueryHandler.findFoodTrucksByApplicant("Bob");
+        assert.strictEqual(response.features.length, 4);
+        expect(response.features[0].properties.applicant).to.exist;
+        expect(response.features[0].properties.applicant.includes("Bob")).to.equal(true);
     });
     it("Should return 12 locations for food item 'pita'",  async function() {
         var response =  await databaseQueryHandler.findFoodTrucksByFoodItem("pita");
         assert.strictEqual(response.features.length, 12);
+        expect(response.features[0].properties.fooditems).to.exist;
+        expect(response.features[0].properties.fooditems.includes("pita")).to.equal(true);
     });
 });

@@ -15,7 +15,7 @@ block content
         // Add JSON to map
         L.geoJson(data,{
             onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties.applicant + " [" + feature.properties.address + "], Menu: "
+                layer.bindPopup(feature.properties.applicant + " [Address:" + feature.properties.address + "], Menu: "
                  + feature.properties.fooditems);
             }
         }).addTo(map);

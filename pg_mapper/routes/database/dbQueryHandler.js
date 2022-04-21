@@ -37,7 +37,7 @@ class databaseQueryHandler {
     static findFoodTrucksByCoordinates(long, lat, radius) {
         return new Promise((resolve, reject) => {
             if (!long || !lat || !radius) {
-                reject(new Error("parameters long/lat/radius cannot be null."))
+                reject(new Error("Parameters long/lat/radius cannot be null."))
             }
 
             if (!databaseQueryHandler.client) {
@@ -68,7 +68,7 @@ class databaseQueryHandler {
     static findFoodTrucksByApplicant(applicant) {
         return new Promise((resolve, reject) => {
             if (!applicant) {
-                reject(new Error("parameters applicant cannot be null."))
+                reject(new Error("Parameters 'applicant' cannot be null."))
             }
 
             if (!databaseQueryHandler.client) {
@@ -97,7 +97,7 @@ class databaseQueryHandler {
     static findFoodTrucksByFoodItem(food) {
         return new Promise((resolve, reject) => {
             if (!food) {
-                reject(new Error("parameters applicant cannot be null."))
+                reject(new Error("Parameters 'food'' cannot be null."))
             }
 
             if (!databaseQueryHandler.client) {
